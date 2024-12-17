@@ -1,0 +1,143 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  width: 90%;
+  max-width: 500px;
+  min-width: 300px;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+#speed-display {
+  font-size: 4rem;
+  color: #38a169;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+#speed-display .unit {
+  font-size: 0.75em;
+  color: #6b7280;
+}
+
+#upload-speed, #ping {
+  font-size: 1.5rem;
+  color: #4a4a4a;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.details {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+button {
+  font-size: 1.2rem;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  background-color: #0d6efd;
+  color: #fff;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0b5ed7;
+}
+
+button.hidden {
+  display: none;
+}
+
+.tabs button {
+  background-color: #1f2937;
+  border-color: #1f2937;
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  color: #fff;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+
+.tabs button:hover {
+  background-color: #374151;
+}
+
+/* Speed Test Meter Styles */
+.speed-test-meter .meter {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  background: #fff; /* White background */
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Darker shadow for contrast */
+}
+
+.scale {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  transform: rotate(-90deg);
+}
+
+.scale-range {
+  width: 25%;
+  height: 5px;
+}
+
+.needle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 100px;
+  background: #333; /* Dark needle color */
+  transform-origin: 50% 100%;
+  transform: rotate(0deg);
+  transition: transform 0.5s ease-out;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .speed-test-meter {
+    margin-bottom: 20px;
+  }
+}
