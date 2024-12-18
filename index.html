@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Speed Test</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
@@ -12,27 +11,41 @@
 </head>
 <body class="bg-gray-900 flex items-center justify-center min-h-screen m-0 p-0 overflow-hidden">
 
-  <!-- Speedometer UI -->
-  <div class="speed-test-meter d-flex justify-content-center align-items-center">
-    <div class="meter">
-      <div class="scale">
-        <div class="scale-range" style="background-color: #ff0000;"></div>
-        <div class="scale-range" style="background-color: #ff5e00;"></div>
-        <div class="scale-range" style="background-color: #fffb00;"></div>
-        <div class="scale-range" style="background-color: #80ff00;"></div>
-        <div class="scale-range" style="background-color: #00ff00;"></div>
-      </div>
-      <div class="needle"></div>
-    </div>
+  <!-- Internet Speed Test Tab -->
+  <div class="tabs text-center absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+    <button class="btn text-white font-extrabold uppercase bg-gray-800 border-none px-6 py-3 rounded-lg shadow-lg hover:bg-gray-700 transition-all">
+      Internet Speed Test
+    </button>
   </div>
 
-  <div class="vanta-background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+  <!-- Vanta Background -->
+  <div class="vanta-background absolute top-0 left-0 w-full h-full -z-10"></div>
+
+  <!-- Speed Test UI -->
+  <div class="container bg-gradient-to-r from-gray-800 via-gray-900 to-black text-center p-5 rounded-lg shadow-xl max-w-lg relative z-10">
+    <div id="speed-display" class="text-5xl font-extrabold text-green-400">
+      0.00 <span class="unit text-gray-200">Mbps</span>
+    </div>
+    <div id="upload-speed" class="text-2xl text-gray-300 mt-2">
+      Upload Speed: 0.00 <span class="unit text-gray-400">Mbps</span>
+    </div>
+    <div id="ping" class="text-2xl text-gray-300 mt-2">
+      Ping: 0.00 <span class="unit text-gray-400">ms</span>
+    </div>
+    <p class="details text-gray-400 mt-4">Initializing test...</p>
+    <button id="restart-test" class="btn mt-4 hidden bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all">
+      Restart Test
+    </button>
+  </div>
 
   <script src="script.js"></script>
 
   <script>
-    var setVanta = () => {
-      if (window.VANTA) window.VANTA.NET({
+    let vantaEffect;
+
+    function setVanta() {
+      if (vantaEffect) vantaEffect.destroy();
+      vantaEffect = VANTA.NET({
         el: ".vanta-background",
         mouseControls: true,
         touchControls: true,
@@ -44,9 +57,10 @@
         color: 0x00ffcc,
         backgroundColor: 0x1a202c
       });
-    };
+    }
 
     window.addEventListener("load", setVanta);
+    window.addEventListener("resize", setVanta);
   </script>
 </body>
 </html>
